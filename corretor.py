@@ -1,4 +1,3 @@
-from statistics import mean, stdev
 import glob
 import cv2
 import numpy as np
@@ -39,7 +38,7 @@ def corrigir(nome_do_arquivo, ordem_matr):
     vertices_ordenadas = utils.reordenar_pontos(vertices_maior_retangulo)
 
     cv2.drawContours(img_copy, vertices_ordenadas, -1, (255, 0, 0), 60)
-    cv2.imshow("img_copy", img_copy)
+    #cv2.imshow("img_copy", img_copy)
 
     # Corrige perspectiva da Imagem
     print("Corrige perspectiva da Imagem")
@@ -65,7 +64,6 @@ def corrigir(nome_do_arquivo, ordem_matr):
     print("Corrigindo questões")
     for indice_linha, linha in enumerate(img_linhas):
         print("Corrigindo questão", indice_linha + 1)
-        maior_pixels = 0
         indice_marcado = -1
         img_colunas = utils.fatiar_horizontal(linha, cfg.NUMERO_ALTERNATIVAS)
         numero_pixels_na_coluna = []
@@ -78,11 +76,7 @@ def corrigir(nome_do_arquivo, ordem_matr):
                            "_" + str(indice_coluna)+"_"+str(numero_de_pixels_brancos), coluna)
         numero_pixels_na_coluna_sem_maior = numero_pixels_na_coluna.copy()
         numero_pixels_na_coluna_sem_maior.remove(max(numero_pixels_na_coluna))
-        #media_de_pixels = mean(numero_pixels_na_coluna_sem_maior)
         print('numero de pixels nas alternativas a,b,c,d,e:', numero_pixels_na_coluna[::-1])
-        media_de_pixels_alternativas = mean(numero_pixels_na_coluna)
-        media_de_pixels_alternativas_sem_maior = mean(numero_pixels_na_coluna_sem_maior)
-        #stdev_de_pixels_alternativas_sem_maior = stdev(numero_pixels_na_coluna_sem_maior)
         alternativas_marcadas_na_questao = 0
         metade_max_de_pixels_alternativas = max(numero_pixels_na_coluna)/2
         for indice_pixels, pixels in enumerate(numero_pixels_na_coluna):
@@ -92,19 +86,6 @@ def corrigir(nome_do_arquivo, ordem_matr):
                 alternativa_marcada = utils.obter_alternativa_pelo_indice(indice_marcado)
                 print('alternativa_marcada:', alternativa_marcada)
             
-            #if (pixels > maior_pixels and pixels > media_de_pixels_alternativas_sem_maior*(1.1+0.03*cfg.NUMERO_ALTERNATIVAS)):
-            #    maior_pixels = pixels
-            #    #alternativas_marcadas_na_questao += 1
-            #    indice_marcado = cfg.NUMERO_ALTERNATIVAS - 1 - indice_pixels
-            #    alternativa_marcada = utils.obter_alternativa_pelo_indice(indice_marcado)
-            #    print('alternativa_marcada:', alternativa_marcada)
-            #if (pixels > maior_pixels and pixels > media_de_pixels*(1.1+0.03*cfg.NUMERO_ALTERNATIVAS)):
-            #    maior_pixels = pixels
-            #    #indice_marcado = indice_pixels
-            #    indice_marcado = cfg.NUMERO_ALTERNATIVAS - 1 - indice_pixels
-            #    alternativa_marcada = utils.obter_alternativa_pelo_indice(indice_marcado)
-            #    print('alternativa_marcada:', alternativa_marcada)
-
         if (alternativas_marcadas_na_questao > 1):
             print('>> Mais de uma alternativa marcada. Questão anulada.')
             indice_marcado = -1
