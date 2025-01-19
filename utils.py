@@ -92,7 +92,7 @@ def obter_indice_da_alternativa(alternativa):
     return ["a", "b", "c", "d", "e"].index(alternativa_minuscula)
 
 
-def ober_alternativa_pelo_indice(indice):
+def obter_alternativa_pelo_indice(indice):
     if indice < 0:
         return "N/A"
     else:
