@@ -96,4 +96,4 @@ def ober_alternativa_pelo_indice(indice):
     if indice < 0:
         return "N/A"
     else:
-        return ["A", "B", "C", "D", "E"][indice]
+        return ["a", "b", "c", "d", "e"][indice]

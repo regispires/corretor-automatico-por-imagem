@@ -1,0 +1,47 @@
+Ordem;Matricula;Nome;Q1;Q2;Q3;Q4;Q5;Q6;Q7;Q8;Q9;Q10;Q11;Q12;Q13;Q14;Q15;Q16;Q17;Q18;Q19;Q20;Nota;Pontos;N_Questoes
+1;556338;FRANCISCA TATIELY DE LIMA NOBRE;d;e;a;c;b;c;b;d;d;a;a;b;a;d;a;e;c;c;b;c;7,0;14;20
+2;555670;CAIO SOUSA DA ROCHA;d;e;a;c;b;d;e;d;b;a;a;c;b;d;e;e;d;c;b;e;9,0;18;20
+3;535667;VITORIA ASHILEY LOPES FERREIRA;d;e;a;b;b;c;e;d;b;a;a;c;a;a;e;e;d;c;b;d;8,0;16;20
+4;555697;MARIA LETICIA DOS SANTOS DANTAS;d;e;a;b;b;c;e;d;b;a;a;c;c;d;e;e;d;a;b;e;8,0;16;20
+5;557360;LEVI FEIJAO LEAL;d;e;a;b;b;c;e;d;b;a;d;c;b;d;e;e;d;c;b;c;9,0;18;20
+6;507993;MATHEUS DOS SANTOS MENDES;d;e;a;a;b;d;a;d;a;a;a;c;b;d;e;d;d;c;b;a;7,0;14;20
+7;555497;RUBENS RABELO SOARES;d;e;a;c;b;c;e;d;b;a;a;c;b;d;e;e;d;c;b;a;9,5;19;20
+8;555330;CARLOS KAUA PIMENTEL ALMEIDA DE OLIVEIRA;d;e;a;e;b;c;b;d;b;a;a;c;b;d;e;e;d;c;b;a;8,5;17;20
+9;511520;JOSE MATHEUS CARLOS GUSTAVO;d;e;a;b;b;c;e;d;e;a;a;c;a;e;a;a;d;c;b;b;6,5;13;20
+10;553662;AQUILA COSTA MEDEIROS;d;d;b;a;b;d;e;d;b;a;a;c;b;d;a;e;d;a;b;e;6,5;13;20
+11;570402;MOGLESON DE LIMA MACIEL;d;e;a;a;b;c;b;d;b;a;a;c;b;d;a;e;d;c;b;a;8,0;16;20
+12;510449;MARCELO AUGUSTO GOMES DE SOUZA;d;d;a;e;b;c;e;d;b;d;a;e;b;d;e;e;d;c;b;c;8,0;16;20
+13;552674;MARIA ELISSA SOUSA TAVARES;d;e;a;c;b;c;b;d;b;a;a;c;b;d;e;e;d;c;b;e;9,0;18;20
+14;497357;FRANCISCO GABRIEL ALVES NUNES;d;e;a;c;b;c;e;d;b;a;a;c;b;d;e;e;d;c;b;e;9,5;19;20
+15;509291;GABRIEL VIANA RAULINO;d;e;a;c;b;c;e;e;b;a;a;c;b;d;e;e;d;c;b;d;9,0;18;20
+16;555060;MARCOS VINICIUS DE SOUSA LIMA;d;c;a;c;b;c;e;d;b;a;a;c;b;e;e;e;a;c;b;e;8,0;16;20
+17;537071;JOSE VINICIUS EVANGELISTA DIAS DE SOUZA;d;e;a;c;b;c;e;d;a;a;a;c;b;d;e;e;d;c;b;a;9,0;18;20
+18;553747;SAMMY DIOGENES FERREIRA;d;e;a;c;b;c;e;d;e;a;a;c;a;d;e;e;d;c;b;a;8,5;17;20
+19;555411;WILLIAM FRANCO PINHEIRO;d;e;a;c;b;c;e;d;b;a;b;c;b;d;e;e;d;c;b;c;9,5;19;20
+20;554143;JOSE JONATHAN ALVES CAETANO;d;e;a;c;b;c;a;d;e;a;a;c;b;d;e;e;d;c;b;c;9,0;18;20
+21;554216;ANDRE LUCAS DE MELO BEZERRA;d;e;a;c;b;c;b;d;b;a;a;c;b;d;e;e;d;c;b;a;9,0;18;20
+22;552722;STEFANY TORRES BATISTA;d;e;a;c;b;a;e;d;b;a;a;c;b;d;e;e;d;c;b;e;9,0;18;20
+23;553851;MILENA DE ALMEIDA CHAVES;d;e;a;c;b;c;e;d;b;a;a;b;b;e;e;e;d;c;b;c;9,0;18;20
+24;495420;AIRTON DOUGLAS COSTA DE SOUSA;d;e;a;c;b;c;e;d;b;a;a;c;b;d;e;e;d;c;b;b;9,5;19;20
+25;555043;JOAO VITOR RODRIGUES LAURINDO;d;e;a;c;b;c;e;d;b;a;c;c;b;d;e;e;d;c;b;b;9,0;18;20
+26;509954;FERNANDO PAULINO DE CASTRO JUNIOR;d;e;a;b;b;c;e;d;d;a;a;c;c;e;c;e;d;c;b;d;7,0;14;20
+27;555018;JOAQUIM FERREIRA DE SOUSA NETO;d;e;a;c;b;c;e;d;b;a;a;c;b;d;e;e;d;c;b;a;9,5;19;20
+28;556476;GUILHERME RODRIGUES NOBRE;b;a;a;b;b;c;e;e;e;b;e;c;b;d;d;c;b;c;b;d;4,5;9;20
+29;512076;VICTOR GABRIEL DA SILVA;d;e;a;c;b;c;e;d;b;a;a;c;b;d;e;e;d;c;b;c;10,0;20;20
+30;554701;JOAO ITALO MAIA ALVES;d;e;a;c;b;c;e;d;b;a;a;c;b;d;e;e;d;c;b;a;9,5;19;20
+31;557171;JOAO VICENTE BRASIL ALVES;d;a;a;c;b;c;e;d;b;a;a;c;b;d;e;e;d;c;b;e;9,0;18;20
+32;497184;GUSTAVO MARTINS SOUSA;d;e;a;c;b;c;c;d;b;a;e;e;c;d;e;a;b;c;b;d;6,5;13;20
+33;555298;AMANDA SILVA DE OLIVEIRA;b;e;a;e;b;c;e;d;b;a;e;c;c;e;e;e;d;c;b;c;7,5;15;20
+34;553576;IGOR FARIAS DE SOUZA VELOZO;d;b;a;c;d;c;e;d;b;a;c;c;b;d;e;e;d;c;b;e;8,0;16;20
+35;514155;GABRIEL PORTO OSORIO;d;a;a;b;b;c;e;d;b;a;a;c;b;d;e;e;d;c;b;c;9,0;18;20
+36;536910;YAN LIMA QUEIROZ;d;e;a;e;b;c;b;d;b;a;a;c;a;d;e;e;d;c;b;c;8,5;17;20
+37;542646;HYARLEI SILVA FREITAS;d;e;a;c;b;c;e;d;b;a;a;e;c;d;a;e;d;d;b;b;7,5;15;20
+38;552631;IAGO FARIAS DE SOUZA VELOZO;d;b;a;c;e;c;e;d;d;a;a;c;b;e;e;e;d;d;b;e;7,0;14;20
+39;539078;MARIANA OLIVEIRA FELIPE;d;e;a;c;e;c;e;d;b;a;a;c;b;d;e;e;d;c;b;e;9,0;18;20
+40;494823;ESTHER AZEVEDO DE AGUIAR;d;e;a;e;b;c;a;d;e;a;e;b;b;e;e;e;d;c;b;d;6,5;13;20
+41;554698;KAIO DAVIDSON SANTOS SAMPAIO;d;e;a;c;b;c;e;d;b;a;a;b;b;e;c;e;d;c;b;c;8,5;17;20
+42;539460;YAGHO MIGUEL DA SILVA;d;e;a;c;b;c;e;d;b;a;a;c;b;d;e;e;d;c;b;c;10,0;20;20
+43;555436;CLEUVYA VITORIA OLIVEIRA DOS SANTOS;d;a;a;a;b;a;c;d;b;a;e;c;b;d;e;a;d;c;a;c;6,5;13;20
+44;478164;ELIXANDRE DA SILVEIRA SILVA FILHO;d;b;e;a;b;c;b;a;b;a;a;c;b;d;a;a;d;c;b;a;6,0;12;20
+45;553381;TAILAN DE SOUZA OLIVEIRA;d;e;a;c;b;c;e;d;a;a;a;c;b;d;e;e;c;c;b;c;9,0;18;20
+46;507842;CARLOS CAUET FERREIRA COSTA;d;e;a;b;b;a;e;d;e;a;a;b;a;d;a;e;d;c;b;a;6,5;13;20

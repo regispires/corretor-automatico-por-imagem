@@ -3,13 +3,17 @@ import glob
 import cv2
 import numpy as np
 import utils
+import config as cfg
+import pandas as pd
 
-DEBUGAR = False
-gabarito = ["a", "b", "c", "d", "e", "d", "c", "b", "a", "b", "c", "d", "e", "d", "c", "b", "a", "b", "c", "d"]
-print("Gabarito: ", gabarito)
+df = pd.read_csv('alunos.csv', sep='\t', dtype={'Matrícula': str})
+alunos = dict(zip(df.loc[:, 'Matrícula'], df.loc[:, 'Nome']))
+
+print("Gabarito: ", cfg.gabarito)
 
 def corrigir(nome_do_arquivo):
     img = cv2.imread(nome_do_arquivo)
+    
     # Redimensiona a imagem para um tamanho padrão 3:4
     print("Redimensiona a imagem para um tamanho padrão 3:4")
     img = cv2.resize(img, (1512, 2016))
@@ -45,15 +49,15 @@ def corrigir(nome_do_arquivo):
     cv2.drawContours(imagem_binaria, [maior_retangulo], -1, (0, 0, 0), 16)
 
     template_formato_retangulo = np.float32(
-        [[0, 0], [267*NUMERO_ALTERNATIVAS, 0], [0, 193*NUMERO_QUESTOES], [267*NUMERO_ALTERNATIVAS, 193*NUMERO_QUESTOES]])  # shape conhecido do retangulo em pixels
+        [[0, 0], [267*cfg.NUMERO_ALTERNATIVAS, 0], [0, 193*cfg.NUMERO_QUESTOES], [267*cfg.NUMERO_ALTERNATIVAS, 193*cfg.NUMERO_QUESTOES]])  # shape conhecido do retangulo em pixels
     matriz_de_transformacao = cv2.getPerspectiveTransform(
         vertices_float_32, template_formato_retangulo)
     img_corrigida = cv2.warpPerspective(
-        imagem_binaria, matriz_de_transformacao, (267*NUMERO_ALTERNATIVAS, 193*NUMERO_QUESTOES))
+        imagem_binaria, matriz_de_transformacao, (267*cfg.NUMERO_ALTERNATIVAS, 193*cfg.NUMERO_QUESTOES))
     img_bordas_cortadas = utils.cortar_imagem(
         img_corrigida, 0.99)  # corta 1% das bordas e mantém 99% da imagem
 
-    img_linhas = utils.fatiar_vertical(img_bordas_cortadas, NUMERO_QUESTOES)
+    img_linhas = utils.fatiar_vertical(img_bordas_cortadas, cfg.NUMERO_QUESTOES)
 
     respostas = []
     pontuacao = 0
@@ -61,30 +65,30 @@ def corrigir(nome_do_arquivo):
     for indice_linha, linha in enumerate(img_linhas):
         maior_pixels = 0
         indice_marcado = -1
-        img_colunas = utils.fatiar_horizontal(linha, NUMERO_ALTERNATIVAS)
+        img_colunas = utils.fatiar_horizontal(linha, cfg.NUMERO_ALTERNATIVAS)
         numero_pixels_na_coluna = []
         for indice_coluna, coluna in enumerate(img_colunas):
             coluna = utils.cortar_imagem(coluna, 0.90)
             numero_de_pixels_brancos = cv2.countNonZero(coluna)
             numero_pixels_na_coluna.append(numero_de_pixels_brancos)
-            if (DEBUGAR):
+            if (cfg.DEBUGAR):
                 cv2.imshow("imagem_circulo"+str(indice_linha) +
                            "_" + str(indice_coluna)+"_"+str(numero_de_pixels_brancos), coluna)
         numero_pixels_na_coluna_sem_maior = numero_pixels_na_coluna.copy()
         numero_pixels_na_coluna_sem_maior.remove(max(numero_pixels_na_coluna))
         media_de_pixels = mean(numero_pixels_na_coluna_sem_maior)
         for indice_pixels, pixels in enumerate(numero_pixels_na_coluna):
-            if (pixels > maior_pixels and pixels > media_de_pixels*(1.1+0.03*NUMERO_ALTERNATIVAS)):
+            if (pixels > maior_pixels and pixels > media_de_pixels*(1.1+0.03*cfg.NUMERO_ALTERNATIVAS)):
                 maior_pixels = pixels
                 #indice_marcado = indice_pixels
-                indice_marcado = NUMERO_ALTERNATIVAS - 1 - indice_pixels
+                indice_marcado = cfg.NUMERO_ALTERNATIVAS - 1 - indice_pixels
 
         alternativa_em_letra = utils.ober_alternativa_pelo_indice(indice_marcado)
         respostas.append(alternativa_em_letra)
-        if (len(gabarito) == NUMERO_QUESTOES and indice_marcado == utils.obter_indice_da_alternativa(gabarito[indice_linha])):
+        if (len(cfg.gabarito) == cfg.NUMERO_QUESTOES and indice_marcado == utils.obter_indice_da_alternativa(cfg.gabarito[indice_linha])):
             pontuacao += 1
 
-    if DEBUGAR:
+    if cfg.DEBUGAR:
         # Imagem binária deve ter o retângulo das questões bem destacado e as opções marcadas também
         # Nos contornos o retângulo das questões deve ser o maior retângulo destacado da imagem
         copia_contornos = img.copy()
@@ -100,31 +104,38 @@ def corrigir(nome_do_arquivo):
 
     return respostas, pontuacao
 
+arquivos_a_serem_corrigidos = glob.glob(cfg.input_dir + '/*.jpg')
 
-# Experiência padrão de gabarito, configurar NUMERO_QUESTOES = 10 e NUMERO_ALTERNATIVAS = 5
-#NUMERO_QUESTOES = 10
-NUMERO_QUESTOES = 20
-NUMERO_ALTERNATIVAS = 5
-arquivos_a_serem_corrigidos = glob.glob("gabaritos/*")
+# Definir o caminho do arquivo CSV para salvar os dados
+caminho_csv = "resultados.csv"
 
-# Experiência de diagnóstico com 7 linhas, configurar NUMERO_QUESTOES = 7 e NUMERO_ALTERNATIVAS = 3
-# NUMERO_QUESTOES = 7
-# NUMERO_ALTERNATIVAS = 3
-# arquivos_a_serem_corrigidos = glob.glob("diagnosticos/7*")
+# Criar e abrir o arquivo CSV no modo de escrita
+with open(caminho_csv, mode='w', encoding='utf-8') as arquivo_csv:
+    # Escrever o cabeçalho manualmente
+    questoes = list(range(1, cfg.NUMERO_QUESTOES + 1))
+    questoes = ['Q' + str(n_questao) for n_questao in questoes]
+    questoes = ','.join(map(str, questoes))
+    questoes = questoes.replace(',', ';')
+    arquivo_csv.write(f"Ordem;Matricula;Nome;{questoes};Nota;Pontos;N_Questoes\n")
 
-# Experiência de diagnóstico com 14 linhas, configurar NUMERO_QUESTOES = 7 e NUMERO_ALTERNATIVAS = 3
-# NUMERO_QUESTOES = 14
-# NUMERO_ALTERNATIVAS = 3
-# arquivos_a_serem_corrigidos = glob.glob("diagnosticos/14*")
+    # Processar cada arquivo na lista
+    for arquivo in arquivos_a_serem_corrigidos:
+        print('Corrigir:', arquivo)
+        respostas, pontuacao = corrigir(arquivo)
+        ordem_matr = arquivo.replace(
+            cfg.input_dir + '/', "").replace(".jpg", "").replace(".png", "").replace(".jpeg", "")
+        print(ordem_matr)
+        ordem, matr = ordem_matr.split('-')
+        ordem = int(ordem)
+        nota = pontuacao / cfg.NUMERO_QUESTOES * 10
 
+        # Escrever os dados no arquivo CSV manualmente
+        linha = f"{ordem},{matr},{alunos[matr]},{','.join(respostas)},{round(nota, 2)},{pontuacao},{cfg.NUMERO_QUESTOES}\n"
+        linha = linha.replace(',', ';').replace('.', ',')
+        arquivo_csv.write(linha)
 
-# NUMERO_QUESTOES = 25
-# NUMERO_ALTERNATIVAS = 3
-# arquivos_a_serem_corrigidos = glob.glob("diagnosticos/25*")
-
-for arquivo in arquivos_a_serem_corrigidos:
-    respostas, pontuacao = corrigir(arquivo)
-    nome_do_estudante = arquivo.replace(
-        "gabaritos/", "").replace(".jpg", "").replace(".png", "").replace(".jpeg", "")
-    print("Estudante: ", nome_do_estudante, "Respostas: ",
-          respostas, "Nota: ", pontuacao/NUMERO_QUESTOES*10, "[", pontuacao, "/", NUMERO_QUESTOES, "]")
+print(f"Os resultados foram salvos no arquivo '{caminho_csv}'.")
+df_result = pd.read_csv(caminho_csv, sep=';', usecols=['Matricula', 'Nome'], dtype={'Matricula': str})
+faltantes = df[~df['Matrícula'].isin(df_result['Matricula'])]
+print('Alunos faltantes:')
+print(faltantes)
