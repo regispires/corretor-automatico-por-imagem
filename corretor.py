@@ -78,9 +78,9 @@ def corrigir(nome_do_arquivo, ordem_matr):
         numero_pixels_na_coluna_sem_maior.remove(max(numero_pixels_na_coluna))
         print('numero de pixels nas alternativas a,b,c,d,e:', numero_pixels_na_coluna[::-1])
         alternativas_marcadas_na_questao = 0
-        metade_max_de_pixels_alternativas = max(numero_pixels_na_coluna)/2
+        threshold_max_de_pixels_alternativas = max(numero_pixels_na_coluna) * 0.55
         for indice_pixels, pixels in enumerate(numero_pixels_na_coluna):
-            if (pixels > metade_max_de_pixels_alternativas):
+            if (pixels > threshold_max_de_pixels_alternativas):
                 alternativas_marcadas_na_questao += 1
                 indice_marcado = cfg.NUMERO_ALTERNATIVAS - 1 - indice_pixels
                 alternativa_marcada = utils.obter_alternativa_pelo_indice(indice_marcado)

@@ -1,7 +1,10 @@
 DEBUGAR = False
 NUMERO_QUESTOES = 20
 NUMERO_ALTERNATIVAS = 5
-input_dir = "/home/regis/tmp/ufc-tmp/disciplinas/2024-2/teste2"
+input_dir = "/home/regis/tmp/ufc-tmp/disciplinas/2025_1/ap2"
 #gabarito = ["a", "b", "c", "d", "e", "d", "c", "b", "a", "b", "c", "d", "e", "d", "c", "b", "a", "b", "c", "d"]
-str_gabarito = 'd	e	a	c	b	c	e	d	b	a	a	c	b	d	e	e	d	c	b	c'
+#str_gabarito = 'd	e	a	c	b	c	e	d	b	a	a	c	b	d	e	e	d	c	b	c'
+#str_gabarito = 'c	b	a	e	d	e	a	d	b	c	b	c	e	a	b	d	d	e	a	c'
+#str_gabarito = 'd	a	d	a	c	a	b	c	c	b	a	b	c	b	e	c	b	c	e	b'
+str_gabarito = 'b	c	c	e	d	a	e	d	c	b	a	e	c	e	e	b	a	d	b	d'
 gabarito = str_gabarito.split('\t')
